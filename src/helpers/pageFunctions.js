@@ -118,7 +118,8 @@ export async function handleSearch(event) {
   const searchValue = searchInput.value;
   const cities = await searchCities(searchValue);
   cities.forEach(async (city) => {
-    const cityWeather = await getWeatherByCity(city);
+    const { url } = city;
+    const cityWeather = await getWeatherByCity(url);
     console.log(cityWeather);
   });
 }
