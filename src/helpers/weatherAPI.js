@@ -14,14 +14,14 @@ export const searchCities = async (term) => {
 export const getWeatherByCity = async (cityURL) => {
   const response = await fetch(`http://api.weatherapi.com/v1/current.json?lang=pt&key=${TOKEN}&q=${cityURL}`);
 
-  const { current } = await response.json();
+  const { location, current } = await response.json();
+  const { name, country } = location;
 
   return {
+    name,
+    country,
     temp: current.temp_c,
     condition: current.condition.text,
     icon: current.condition.icon,
-    name: current.location.name,
-    country: current.location.country,
-    url: `http://api.weatherapi.com/v1/current.json?lang=pt&key=${TOKEN}&q=${cityURL}`,
   };
 };
