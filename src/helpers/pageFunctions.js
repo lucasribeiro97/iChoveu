@@ -104,6 +104,9 @@ export function createCityElement(cityInfo) {
   cityElement.appendChild(headingElement);
   cityElement.appendChild(infoContainer);
 
+  const citiesList = document.getElementById('cities');
+  citiesList.appendChild(cityElement);
+
   return cityElement;
 }
 
@@ -120,6 +123,6 @@ export async function handleSearch(event) {
   cities.forEach(async (city) => {
     const { url } = city;
     const cityWeather = await getWeatherByCity(url);
-    console.log(cityWeather);
+    createCityElement(cityWeather);
   });
 }
